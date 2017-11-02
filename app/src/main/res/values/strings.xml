@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PlayOHackerNews</string>
+    <string name="search_text">Search</string>
 </resources>
