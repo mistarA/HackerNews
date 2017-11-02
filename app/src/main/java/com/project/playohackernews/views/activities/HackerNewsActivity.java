@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -50,6 +51,8 @@ public class HackerNewsActivity extends AppCompatActivity implements IHackerNews
         setContentView(R.layout.activity_hacker_news);
 
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initDependencies();
 
         mHackerNewsPresenter.setHackerNewsActivityView(this);
@@ -95,6 +98,17 @@ public class HackerNewsActivity extends AppCompatActivity implements IHackerNews
     protected void onStop() {
         super.onStop();
         mHackerNewsPresenter.stop();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**

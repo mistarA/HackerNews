@@ -4,6 +4,7 @@ package com.project.playohackernews.di.components;
 import com.project.playohackernews.views.activities.HackerNewsActivity;
 import com.project.playohackernews.di.modules.ApplicationModule;
 import com.project.playohackernews.di.modules.NetModule;
+import com.project.playohackernews.views.activities.NewsFeedWebViewActivity;
 
 import javax.inject.Singleton;
 
@@ -19,4 +20,5 @@ public interface ApplicationComponent {
 
     void inject(HackerNewsActivity mainActivity);
 
+    void inject(NewsFeedWebViewActivity newsFeedWebViewActivity);
 }

@@ -10,12 +10,13 @@ import android.widget.TextView;
 
 import com.project.playohackernews.R;
 import com.project.playohackernews.models.Hit;
+import com.project.playohackernews.views.activities.NewsFeedWebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HitRecyclerAdapter extends RecyclerView.Adapter<HitRecyclerAdapter.ProjectItemViewHolder> {
+public class HitRecyclerAdapter extends RecyclerView.Adapter<HitRecyclerAdapter.HitItemViewHolder> {
     private Context mContext;
     private List<Hit> mHitList;
 
@@ -32,12 +33,12 @@ public class HitRecyclerAdapter extends RecyclerView.Adapter<HitRecyclerAdapter.
         notifyDataSetChanged();
     }
 
-    public static class ProjectItemViewHolder extends RecyclerView.ViewHolder {
+    public static class HitItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView mHitTitle;
         TextView mHitAuthorName;
 
-        public ProjectItemViewHolder(View itemView) {
+        public HitItemViewHolder(View itemView) {
             super(itemView);
             mHitTitle = (TextView) itemView.findViewById(R.id.hit_name);
             mHitAuthorName = (TextView) itemView.findViewById(R.id.hit_author_name);
@@ -45,25 +46,25 @@ public class HitRecyclerAdapter extends RecyclerView.Adapter<HitRecyclerAdapter.
     }
 
     @Override
-    public ProjectItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HitItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hit_item_layout, parent, false);
-        return new ProjectItemViewHolder(view);
+        return new HitItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ProjectItemViewHolder holder, int position) {
+    public void onBindViewHolder(HitItemViewHolder holder, int position) {
 
         final Hit hit = mHitList.get(position);
         holder.mHitTitle.setText(hit.getTitle());
         holder.mHitAuthorName.setText(hit.getAuthor());
-       /* holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ProjectDetailActivity.class);
-                intent.putExtra(ProjectDetailActivity.INTENT_PROJECT_DETAIL_URL_EXTRA, projectModel.getUrl());
+                Intent intent = new Intent(mContext, NewsFeedWebViewActivity.class);
+                intent.putExtra(NewsFeedWebViewActivity.INTENT_FEED_DETAIL_URL_EXTRA, hit.getUrl());
                 mContext.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override
